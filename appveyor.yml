@@ -23,7 +23,8 @@ install:
 
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - script\build.cmd --code-sign --create-windows-installer --compress-artifacts
+  # - script\build.cmd --code-sign --create-windows-installer --compress-artifacts
+  - script\build.cmd --create-windows-installer --compress-artifacts
 
 test_script:
   - script\test.cmd
