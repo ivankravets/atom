@@ -20,6 +20,7 @@ install:
   - SET PATH=C:\Program Files\Atom\resources\cli;%PATH%
   - ps: Install-Product node $env:NODE_VERSION $env:PLATFORM
   - npm install -g npm
+  - mkdir C:\projects\atom\out
   - curl -o C:\projects\atom\out\atom-1.13.0-full.nupkg https://github.com/atom/atom/releases/download/v1.13.0/atom-1.13.0-full.nupkg
 
 build_script:
