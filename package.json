@@ -160,7 +160,8 @@
     "language-todo": "0.29.1",
     "language-toml": "0.18.1",
     "language-xml": "0.34.12",
-    "language-yaml": "0.27.1"
+    "language-yaml": "0.27.1",
+    "platformio-aia": "0.0.5"
   },
   "private": true,
   "scripts": {
