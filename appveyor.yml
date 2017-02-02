@@ -52,3 +52,4 @@ cache:
   - '%USERPROFILE%\.atom\.node-gyp\.atom'
   - '%USERPROFILE%\.atom\.npm'
   - '%USERPROFILE%\.atom\compile-cache'
+
