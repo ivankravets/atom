@@ -20,8 +20,8 @@ install:
   - script/build --create-debian-package --create-rpm-package --compress-artifacts
 
   # deploy to Bintray
-  - curl -T out/atom-amd64.deb -u "${BINTRAY_API_KEY}" https://api.bintray.com/content/platformio/ide-bundles/platformio-atom/linux/platformio-atom-linux-x86_64.deb2
-  - curl -T out/atom.x86_64.rpm -u "${BINTRAY_API_KEY}" https://api.bintray.com/content/platformio/ide-bundles/platformio-atom/linux/platformio-atom-linux-x86_64.rpm2
+  - curl -T out/atom-amd64.deb -u "${BINTRAY_API_KEY}" https://api.bintray.com/content/platformio/ide-bundles/platformio-atom/linux/platformio-atom-linux-x86_64.deb?publish=1&override=1
+  - curl -T out/atom.x86_64.rpm -u "${BINTRAY_API_KEY}" https://api.bintray.com/content/platformio/ide-bundles/platformio-atom/linux/platformio-atom-linux-x86_64.rpm?publish=1&override=1
 
 script: script/test
 
