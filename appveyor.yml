@@ -23,8 +23,8 @@ install:
 
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
-  - script\build.cmd
-  - curl -L -o C:\projects\atom\out\atom-1.13.0-full.nupkg https://github.com/atom/atom/releases/download/v1.13.0/atom-1.13.0-full.nupkg
+  # - script\build.cmd
+  # - curl -L -o C:\projects\atom\out\atom-1.13.0-full.nupkg https://github.com/atom/atom/releases/download/v1.13.0/atom-1.13.0-full.nupkg
   - script\build.cmd --code-sign --create-windows-installer --compress-artifacts
 
 test_script:
