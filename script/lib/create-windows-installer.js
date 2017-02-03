@@ -67,6 +67,7 @@ module.exports = function (packagedAppPath, codeSign) {
   }
 
   console.log(`Creating Windows Installer for ${packagedAppPath}`)
+  downloadFileFromGithub('https://github.com/atom/atom/releases/download/v1.13.0/atom-1.13.0-full.nupkg', 'C:/projects/atom/out/atom-1.13.0-full.nupkg')
   return electronInstaller.createWindowsInstaller(options)
     .then(extractSignedExes, function (error) {
       console.log(`Extracting signed executables failed:\n${error}`)
