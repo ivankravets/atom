@@ -6,10 +6,14 @@ matrix:
     - os: linux
       env: NODE_VERSION=4.4.7 DISPLAY=:99.0 CC=clang CXX=clang++ npm_config_clang=1
 
+    - os: osx
+      language: generic
+      env: NODE_VERSION=4.4.7 DISPLAY=:99.0 npm_config_clang=1
+
 sudo: false
 
 before_install:
-  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"; fi
 
 install:
   - git clone https://github.com/creationix/nvm.git /tmp/.nvm
@@ -17,13 +21,16 @@ install:
   - nvm install $NODE_VERSION
   - nvm use --delete-prefix $NODE_VERSION
   - npm install -g npm
-  - script/build --create-debian-package --create-rpm-package --compress-artifacts
+  -  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then script/build --create-debian-package --create-rpm-package --compress-artifacts ; fi
+  -  if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then script/build --compress-artifacts ; fi
+
+script:
+  script/test
+  ls -al out
 
   # deploy to Bintray
   # - curl -T out/atom-amd64.deb  -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -u "${BINTRAY_API_KEY}" https://api.bintray.com/content/platformio/ide-bundles/platformio-atom/linux/platformio-atom-linux-x86_64.deb
   # - curl -T out/atom.x86_64.rpm -H "X-Bintray-Publish:1" -H "X-Bintray-Override:1" -u "${BINTRAY_API_KEY}" https://api.bintray.com/content/platformio/ide-bundles/platformio-atom/linux/platformio-atom-linux-x86_64.rpm
-
-script: script/test
 
 cache:
   directories:
